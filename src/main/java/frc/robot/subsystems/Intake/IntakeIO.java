@@ -11,6 +11,8 @@ public interface IntakeIO {
 
         public double leftPower;
 
+        public double pivotPower;
+
         public double rightCurrent;
 
         public double leftCurrent;

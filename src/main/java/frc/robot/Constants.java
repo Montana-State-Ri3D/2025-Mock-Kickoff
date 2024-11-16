@@ -58,4 +58,9 @@ public final class Constants {
     public static final double MAX_VELOCITY = Units.feetToMeters(11.23);
     public static final double TRACK_WIDTH = Units.inchesToMeters(24);
   }
+
+  public static class IntakeConstants{
+    public static final double INTAKE_RATIO = 1.0/11.0;
+    public static final double PIVOT_RATIO = 1.0/15.0;
+  }
 }
