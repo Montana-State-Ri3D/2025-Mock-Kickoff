@@ -54,7 +54,7 @@ public class DriveTrain extends SubsystemBase {
         this.getCurrentCommand() != null ? this.getCurrentCommand().getName() : "none");
 
     // Update Odometry
-    pose = odometry.update(inputs.heading, inputs.leftFrontPosition, inputs.leftFrontPosition);
+    pose = odometry.update(inputs.heading, inputs.leftFrontPosition, inputs.rightFrontPosition);
 
     Logger.recordOutput("DriveTrain/Pos2d", pose);
     Logger.recordOutput("DriveTrain/WheelSpeed", this.getWheelSpeed());

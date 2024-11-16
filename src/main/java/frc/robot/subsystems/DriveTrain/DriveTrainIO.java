@@ -78,8 +78,8 @@ public interface DriveTrainIO {
      * drive: Drives the robot with the given power values
      * 
      * @param leftPower:  The power of the left side of the drive train from -1 to 1
-     * @param rightPower: The power of the right side of the drive train from -1 to
-     *                    1
+     * @param rightPower: The power of the right side of the drive train from -1 to 1
+     *                    
      */
     default void drive(double leftPower, double rightPower) {
     }
