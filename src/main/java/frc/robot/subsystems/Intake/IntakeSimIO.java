@@ -1,35 +1,40 @@
 package frc.robot.subsystems.Intake;
 
-import com.revrobotics.CANSparkMax;
-
 import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.simulation.DCMotorSim;
-
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import frc.robot.Constants.IntakeConstants;
+
 
 
 
 public class IntakeSimIO implements IntakeIO {
     private boolean isBrake;
-    private CANSparkMax leftIntake;
-    private CANSparkMax rightIntake;
-    private CANSparkMax pivotMotor;
+
     private DCMotorSim leftIntakeSim;
     private DCMotorSim rightIntakeSim;
     private DCMotorSim pivotSim;
+    private Encoder leftEncoder;
+    private Encoder rightEncoder;
+    private Encoder pivotEncoder;
+    private EncoderSim leftEncoderSim;
+    private EncoderSim rightEncoderSim;
+    private EncoderSim pivotEncoderSim;
 
     public IntakeSimIO(){
         isBrake = true;
-        
-        leftIntake = new CANSparkMax(1, CANSparkMax.MotorType.kBrushless);
-        rightIntake = new CANSparkMax(2, CANSparkMax.MotorType.kBrushless);
-        pivotMotor = new CANSparkMax(3, CANSparkMax.MotorType.kBrushless);
-
 
         leftIntakeSim = new DCMotorSim(DCMotor.getNEO(1), IntakeConstants.INTAKE_RATIO, 1);
         rightIntakeSim = new DCMotorSim(DCMotor.getNEO(1), IntakeConstants.INTAKE_RATIO, 1);
         pivotSim = new DCMotorSim(DCMotor.getNEO(1), IntakeConstants.PIVOT_RATIO, 1);
-        
+        leftEncoder = new Encoder(4, 5);
+        rightEncoder = new Encoder(6, 7);
+        pivotEncoder = new Encoder(8, 9);
+        leftEncoderSim = new EncoderSim(leftEncoder);
+        rightEncoderSim = new EncoderSim(rightEncoder);
+        pivotEncoderSim = new EncoderSim(pivotEncoder);
+
     }
     
     
@@ -40,8 +45,8 @@ public class IntakeSimIO implements IntakeIO {
 
 
     public void setPower(double leftPower, double rightPower) {
-       leftIntake.set(leftPower);
-       rightIntake.set(rightPower);
+       leftIntakeSim.setInputVoltage(leftPower*12);
+       rightIntakeSim.setInputVoltage(rightPower*12);
     }
 
 
@@ -49,5 +54,9 @@ public class IntakeSimIO implements IntakeIO {
         inputs.isBrake = isBrake;
         inputs.leftCurrent = leftIntakeSim.getCurrentDrawAmps();
         inputs.rightCurrent = rightIntakeSim.getCurrentDrawAmps();
+        inputs.rightVelo = rightIntakeSim.getAngularVelocityRadPerSec();
+        inputs.leftVelo = leftIntakeSim.getAngularVelocityRadPerSec();
+        inputs.pivotPosition = pivotEncoder.getDistance();
+
     }
 }

@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.subsystems.DriveTrain.DriveTrain;
+import frc.robot.subsystems.Intake.Intake;
 import frc.robot.utilities.SubsystemFactory;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -16,6 +17,9 @@ public class RobotContainer {
 
   // Subsystems
   private DriveTrain driveTrain;
+
+  private Intake intake;
+
 
   // Commands
   private Command defaultDriveCommand;
@@ -37,6 +41,7 @@ public class RobotContainer {
 
     SubsystemFactory factory = new SubsystemFactory();
     this.driveTrain = factory.createDriveTrain();
+    this.intake = factory.createIntake();
 
   }
 
@@ -57,6 +62,8 @@ public class RobotContainer {
   private void configureBindings() {
     driverController.start().onTrue(new InstantCommand(() -> driveTrain.resetGyro()));
     driverController.back().onTrue(new InstantCommand(() -> driveTrain.resetPose()));
+    driverController.rightBumper().onTrue(new InstantCommand(() -> intake.setPower(.5, .5) ));
+    driverController.leftBumper().onTrue(new InstantCommand(() -> intake.setPower(-.5, -.5) ));
   }
 
   public Command getAutonomousCommand() {

@@ -18,8 +18,15 @@ public interface IntakeIO {
         public double leftCurrent;
 
         public boolean isBrake;
+
+        public double leftVelo;
+
+        public double rightVelo;
+
+        public double pivotPosition;
     }
     default void updateInputs(IntakeIOInputs inputs){}
     default void setPower(double leftPower, double rightPower){}
     default void setBrake(boolean isBrake){}
+    
 }

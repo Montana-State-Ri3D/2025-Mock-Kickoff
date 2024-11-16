@@ -19,7 +19,7 @@ public class Intake extends SubsystemBase{
     public void periodic(){
         io.updateInputs(inputs);
         Logger.processInputs("Intake", inputs);
-        Logger.recordOutput("Intake/CurentCommand",
+        Logger.recordOutput("Intake/CurrentCommand",
                 this.getCurrentCommand() != null ? this.getCurrentCommand().getName() : "none");
     }
     public void setPower(double leftPower, double rightPower){
