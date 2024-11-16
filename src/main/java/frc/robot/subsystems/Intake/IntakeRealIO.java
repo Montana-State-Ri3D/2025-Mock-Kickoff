@@ -28,7 +28,6 @@ public class IntakeRealIO implements IntakeIO{
         for (CANSparkMax motor: this.Motors){
             motor.restoreFactoryDefaults();
             motor.setIdleMode(CANSparkMax.IdleMode.kBrake);
-
         }
 
         this.leftIntake.setInverted(false);
@@ -40,13 +39,13 @@ public class IntakeRealIO implements IntakeIO{
         rightIntakeEncoder = this.rightIntake.getEncoder();
         pivotEncoder = this.pivotMotor.getEncoder();
 
-        rightIntakeEncoder.setPositionConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO);
-        leftIntakeEncoder.setPositionConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO);
-        pivotEncoder.setPositionConversionFactor(IntakeConstants.PIVOT_ARM_RADIUS*2.0*Math.PI*IntakeConstants.PIVOT_RATIO);
+        // rightIntakeEncoder.setPositionConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO);
+        // leftIntakeEncoder.setPositionConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO);
+        pivotEncoder.setPositionConversionFactor(2.0*Math.PI*IntakeConstants.PIVOT_RATIO);
 
-        rightIntakeEncoder.setVelocityConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO/60.0);
-        leftIntakeEncoder.setVelocityConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO/60.0);
-        pivotEncoder.setVelocityConversionFactor(IntakeConstants.PIVOT_ARM_RADIUS*2.0*Math.PI*IntakeConstants.PIVOT_RATIO/60.0);
+        // rightIntakeEncoder.setVelocityConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO/60.0);
+        // leftIntakeEncoder.setVelocityConversionFactor(IntakeConstants.INTAKE_WHEEL_RADIUS*2.0*Math.PI*IntakeConstants.INTAKE_RATIO/60.0);
+        pivotEncoder.setVelocityConversionFactor(2.0*Math.PI*IntakeConstants.PIVOT_RATIO/60.0);
         
     }
 

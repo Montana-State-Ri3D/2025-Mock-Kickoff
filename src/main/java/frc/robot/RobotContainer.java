@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.DriveStationConstants;
+import frc.robot.commands.IntakeIn;
 
 public class RobotContainer {
 
@@ -62,7 +63,7 @@ public class RobotContainer {
   private void configureBindings() {
     driverController.start().onTrue(new InstantCommand(() -> driveTrain.resetGyro()));
     driverController.back().onTrue(new InstantCommand(() -> driveTrain.resetPose()));
-    driverController.rightBumper().onTrue(new InstantCommand(() -> intake.setPower(.5, .5) ));
+    driverController.rightBumper().onTrue(new IntakeIn(intake, () -> driverController.b().getAsBoolean(), 0.2, 20.0));
     driverController.leftBumper().onTrue(new InstantCommand(() -> intake.setPower(-.5, -.5) ));
   }
 
