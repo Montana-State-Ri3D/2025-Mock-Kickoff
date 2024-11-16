@@ -6,12 +6,22 @@ public interface ElevatorIO {
        
     @AutoLog
     public class ElevatorIOInputs{
-        public double elevatorPower;
+        public double elevatorMasterPower;
+        public double elevatorSlavePower;
 
-        public double elevatorCurrent;
+        public double elevatorMasterCurrent;
+        public double elevatorSlaveCurrent;
 
-        public double elevatorEncoder;
+        public double elevatorMasterEncoder;
+        public double elevatorSlaveEncoder;
 
+        public double elevatorMasterPosition;
+        public double elevatorSlavePosition;
+
+        public double elevatorMasterVelocity;
+        public double elevatorSlaveVelocity;
+
+        
         public boolean isBrake;
     }
     default void updateInputs(ElevatorIOInputs inputs){}
